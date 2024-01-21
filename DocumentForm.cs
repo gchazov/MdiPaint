@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,15 @@ namespace MdiPaint
     public partial class DocumentForm : Form
     {
         private int x, y;
-        private Bitmap bitmap;
+        private MainForm mainForm;
+        private Graphics graphics;
+        
+
+        public bool LocalChanged { get; set; }
+        public Bitmap Image { get; set; }
+        public Bitmap Temp { get; set; }
+
+        
 
         private void DocumentForm_MouseDown(object sender, MouseEventArgs e)
         {
@@ -25,8 +34,8 @@ namespace MdiPaint
         {
             if (e.Button != MouseButtons.Left)
                 return;
-            Graphics g = Graphics.FromImage(bitmap);
-            g.DrawLine(new Pen(MainForm.Colour, MainForm.BrushWidth), x, y, e.X, e.Y);
+            Graphics g = Graphics.FromImage(Image);
+            g.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X, e.Y);
             Invalidate();
             x = e.X; y = e.Y;
         }
@@ -34,14 +43,51 @@ namespace MdiPaint
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.DrawImage(bitmap, 0, 0);
+            e.Graphics.DrawImage(Image, 0, 0);
         }
 
-        public DocumentForm()
+        public void ResizeDoc()
+        {
+            Bitmap tmp = (Bitmap)Image.Clone();
+            Image = new Bitmap(mainForm.ImageW, mainForm.ImageH);
+            graphics = Graphics.FromImage(Image);
+            graphics.Clear(Color.White);
+            for (int Xcount = 0; Xcount < tmp.Width && Xcount < Image.Width; Xcount++)
+            {
+                for (int Ycount = 0; Ycount < tmp.Height && Ycount < Image.Height; Ycount++)
+                {
+                    Image.SetPixel(Xcount, Ycount, tmp.GetPixel(Xcount, Ycount));
+                }
+            }
+            Invalidate();
+            mainForm.IsChanged = true;
+            LocalChanged = true;
+        }
+
+        public DocumentForm(MainForm parent)
         {
             InitializeComponent();
-            bitmap = new Bitmap(300, 200);
+            mainForm = parent;
+            Image = new Bitmap(parent.ImageW, parent.ImageH);
+            Temp = new Bitmap(Image.Width, Image.Height);
+            graphics = Graphics.FromImage(Image);
+            graphics.Clear(Color.White);
+            LocalChanged = true;    
+            this.Text = $"Рисунок {MainForm.CountMdi}";
 
+        }
+
+        public DocumentForm(MainForm parent, string file)
+        {
+            InitializeComponent();
+            mainForm = parent;
+            using (Stream s = new FileStream(file, FileMode.Open, FileAccess.Read))
+            {
+                Image = new Bitmap(s);
+            }
+            Temp = new Bitmap(Image.Width, Image.Height);
+            Text = file;
+            LocalChanged = false;
         }
     }
 }

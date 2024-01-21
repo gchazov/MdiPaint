@@ -21,7 +21,8 @@ namespace MdiPaint
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            mf.ImageH = int.Parse(w.Text);
+            mf.ImageW = int.Parse(h.Text);
         }
     }
 }
