@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,16 +35,23 @@ namespace MdiPaint
         {
             if (e.Button != MouseButtons.Left)
                 return;
-            Graphics g = Graphics.FromImage(Image);
-            g.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X, e.Y);
+            graphics = Graphics.FromImage(Image);
+            var pen = new Pen(MainForm.BrushColor, MainForm.BrushWidth);
+            pen.StartCap = LineCap.Round;
+            pen.EndCap = LineCap.Round;
+            graphics.DrawLine(pen, x, y, e.X, e.Y);
+            x = e.X;
+            y = e.Y;
             Invalidate();
-            x = e.X; y = e.Y;
+            mainForm.IsChanged = true;
+            LocalChanged = true;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.DrawImage(Image, 0, 0);
+            //if (mainForm.tools != Tools.Pen && mainForm.tools != Tools.Eraser)
+                e.Graphics.DrawImage(Image, 0, 0);
         }
 
         public void ResizeDoc()

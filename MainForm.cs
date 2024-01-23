@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MdiPaint.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,13 @@ using System.Windows.Forms;
 
 namespace MdiPaint
 {
+    public enum Tools
+    {
+        Pen,
+        Line,
+        Ellipse,
+        Star
+    }
     public partial class MainForm : Form
     {
         public static Color BrushColor { get; set; } = Color.Black;
@@ -19,6 +27,7 @@ namespace MdiPaint
         public int ImageW { get; set; } = 600;
         public int ImageH { get; set; } = 600;
         public bool IsChanged { get; set; } = false;
+        public Tools tools { get; set; }
 
 
         public MainForm()
@@ -149,6 +158,42 @@ namespace MdiPaint
                 Save_Click(sender, e);
                 ActiveMdiChild.Text = sfd.FileName;
             }
+        }
+
+        private void DeleteIcons()
+        {
+            PenToolStripMenuItem.Image = null;
+            LineToolStripMenuItem.Image = null;
+            EllipseToolStripMenuItem1.Image = null;
+            StarToolStripMenuItem.Image = null;
+        }
+
+        private void PenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.tools = Tools.Pen;
+            DeleteIcons();
+            PenToolStripMenuItem.Image = MdiPaint.Properties.Resources.tick;
+        }
+
+        private void LineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.tools = Tools.Line;
+            DeleteIcons();
+            LineToolStripMenuItem.Image = MdiPaint.Properties.Resources.tick;
+        }
+
+        private void EllipseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.tools = Tools.Ellipse;
+            DeleteIcons();
+            EllipseToolStripMenuItem1.Image = MdiPaint.Properties.Resources.tick;
+        }
+
+        private void StarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.tools = Tools.Star;
+            DeleteIcons();
+            StarToolStripMenuItem.Image = MdiPaint.Properties.Resources.tick;
         }
     }
 }

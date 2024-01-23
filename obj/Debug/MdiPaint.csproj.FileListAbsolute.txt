@@ -4,7 +4,6 @@ D:\Desktop\MdiPaint\bin\Debug\MdiPaint.pdb
 D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.AssemblyReference.cache
 D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.SuggestedBindingRedirects.cache
 D:\Desktop\MdiPaint\obj\Debug\MdiPaint.MainForm.resources
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.Properties.Resources.resources
 D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.GenerateResource.cache
 D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
 D:\Desktop\MdiPaint\obj\Debug\MdiPaint.exe
@@ -26,3 +25,16 @@ D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.csproj.GenerateResource.cache
 D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
 D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.exe
 D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.pdb
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.Properties.Resources.resources
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse.bmp
+D:\Desktop\MdiPaint\bin\Debug\Resources\blue.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\green.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse_crow.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse_logo.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\otherColors.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\colors.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\eraser.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\palette.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\red.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\tick.png
