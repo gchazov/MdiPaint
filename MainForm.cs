@@ -17,12 +17,13 @@ namespace MdiPaint
         Pen,
         Line,
         Ellipse,
-        Star
+        Star,
+        Eraser
     }
     public partial class MainForm : Form
     {
         public static Color BrushColor { get; set; } = Color.Black;
-        public static int BrushWidth { get; set; } = 15;
+        public static int BrushWidth { get; set; } = 5;
         public static int CountMdi { get; set; } = 0;
         public int ImageW { get; set; } = 600;
         public int ImageH { get; set; } = 600;
@@ -33,6 +34,8 @@ namespace MdiPaint
         public MainForm()
         {
             InitializeComponent();
+            PenToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
+            brushWidth.Text = BrushWidth.ToString();
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -166,34 +169,42 @@ namespace MdiPaint
             LineToolStripMenuItem.Image = null;
             EllipseToolStripMenuItem1.Image = null;
             StarToolStripMenuItem.Image = null;
+            EraserToolStripMenuItem.Image = null;
         }
 
         private void PenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.tools = Tools.Pen;
             DeleteIcons();
-            PenToolStripMenuItem.Image = MdiPaint.Properties.Resources.tick;
+            PenToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
 
         private void LineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.tools = Tools.Line;
             DeleteIcons();
-            LineToolStripMenuItem.Image = MdiPaint.Properties.Resources.tick;
+            LineToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
 
         private void EllipseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.tools = Tools.Ellipse;
             DeleteIcons();
-            EllipseToolStripMenuItem1.Image = MdiPaint.Properties.Resources.tick;
+            EllipseToolStripMenuItem1.Image = MdiPaint.Properties.Resources.choice;
         }
 
         private void StarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.tools = Tools.Star;
             DeleteIcons();
-            StarToolStripMenuItem.Image = MdiPaint.Properties.Resources.tick;
+            StarToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
+        }
+
+        private void EraserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.tools = Tools.Eraser;
+            DeleteIcons();
+            EraserToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
     }
 }

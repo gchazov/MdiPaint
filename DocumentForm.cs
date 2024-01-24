@@ -23,7 +23,6 @@ namespace MdiPaint
         public Bitmap Image { get; set; }
         public Bitmap Temp { get; set; }
 
-        
 
         private void DocumentForm_MouseDown(object sender, MouseEventArgs e)
         {
@@ -35,23 +34,42 @@ namespace MdiPaint
         {
             if (e.Button != MouseButtons.Left)
                 return;
-            graphics = Graphics.FromImage(Image);
-            var pen = new Pen(MainForm.BrushColor, MainForm.BrushWidth);
-            pen.StartCap = LineCap.Round;
-            pen.EndCap = LineCap.Round;
-            graphics.DrawLine(pen, x, y, e.X, e.Y);
-            x = e.X;
-            y = e.Y;
+            if (mainForm.tools == Tools.Pen || mainForm.tools == Tools.Eraser)
+            {
+                graphics = Graphics.FromImage(Image);
+                Color paintingColor = mainForm.tools == Tools.Eraser ? Color.White : MainForm.BrushColor;
+                var pen = new Pen(paintingColor, MainForm.BrushWidth);
+                pen.StartCap = LineCap.Round;
+                pen.EndCap = LineCap.Round;
+                graphics.DrawLine(pen, x, y, e.X, e.Y);
+                x = e.X;
+                y = e.Y;
+                Invalidate();
+                mainForm.IsChanged = true;
+                LocalChanged = true;
+                return;
+            }
+            Temp = new Bitmap(Image.Width, Image.Height);
+            graphics = Graphics.FromImage(Temp);
+            switch (mainForm.tools)
+            {
+                case Tools.Line:
+                    graphics.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X, e.Y);
+                    break;
+                case Tools.Ellipse:
+                    graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X - x, e.Y - y);
+                    break;
+            }
             Invalidate();
-            mainForm.IsChanged = true;
-            LocalChanged = true;
+            
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            //if (mainForm.tools != Tools.Pen && mainForm.tools != Tools.Eraser)
-                e.Graphics.DrawImage(Image, 0, 0);
+            e.Graphics.DrawImage(Image, 0, 0);
+            if (mainForm.tools == Tools.Line || mainForm.tools == Tools.Ellipse || mainForm.tools == Tools.Star)
+                e.Graphics.DrawImage(Temp, 0, 0);
         }
 
         public void ResizeDoc()
@@ -84,6 +102,29 @@ namespace MdiPaint
             this.Text = $"Рисунок {MainForm.CountMdi}";
 
         }
+
+        private void DocumentForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (mainForm.tools == Tools.Line)
+            {
+                graphics = Graphics.FromImage(Image);
+                graphics.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X, e.Y);
+                Temp = new Bitmap(1, 1);
+                Invalidate();
+                mainForm.IsChanged = true;
+                LocalChanged = true;
+            }
+            if (mainForm.tools == Tools.Ellipse)
+            {
+                graphics = Graphics.FromImage(Image);
+                graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth),x, y, e.X - x, e.Y - y);
+                Temp = new Bitmap(1, 1);
+                Invalidate();
+                mainForm.IsChanged = true;
+                LocalChanged = true;
+            }
+        }
+
 
         public DocumentForm(MainForm parent, string file)
         {

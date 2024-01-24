@@ -149,5 +149,16 @@
   <ItemGroup>
     <None Include="Resources\pick.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\choice.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pick.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\choice.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

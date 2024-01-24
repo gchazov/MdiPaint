@@ -56,9 +56,10 @@
             this.LineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EllipseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.StarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EraserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.brushWidth = new System.Windows.Forms.ToolStripTextBox();
             this.eraser = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -221,10 +222,11 @@
             this.toolStripDropDownButton2,
             this.toolStripSeparator1,
             this.toolStripLabel1,
-            this.toolStripTextBox1,
+            this.brushWidth,
             this.eraser});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.Size = new System.Drawing.Size(1067, 27);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
@@ -281,7 +283,8 @@
             this.PenToolStripMenuItem,
             this.LineToolStripMenuItem,
             this.EllipseToolStripMenuItem1,
-            this.StarToolStripMenuItem});
+            this.StarToolStripMenuItem,
+            this.EraserToolStripMenuItem});
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
@@ -291,30 +294,37 @@
             // PenToolStripMenuItem
             // 
             this.PenToolStripMenuItem.Name = "PenToolStripMenuItem";
-            this.PenToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.PenToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.PenToolStripMenuItem.Text = "Перо";
             this.PenToolStripMenuItem.Click += new System.EventHandler(this.PenToolStripMenuItem_Click);
             // 
             // LineToolStripMenuItem
             // 
             this.LineToolStripMenuItem.Name = "LineToolStripMenuItem";
-            this.LineToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.LineToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.LineToolStripMenuItem.Text = "Линия";
             this.LineToolStripMenuItem.Click += new System.EventHandler(this.LineToolStripMenuItem_Click);
             // 
             // EllipseToolStripMenuItem1
             // 
             this.EllipseToolStripMenuItem1.Name = "EllipseToolStripMenuItem1";
-            this.EllipseToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.EllipseToolStripMenuItem1.Size = new System.Drawing.Size(163, 26);
             this.EllipseToolStripMenuItem1.Text = "Эллипс";
             this.EllipseToolStripMenuItem1.Click += new System.EventHandler(this.EllipseToolStripMenuItem1_Click);
             // 
             // StarToolStripMenuItem
             // 
             this.StarToolStripMenuItem.Name = "StarToolStripMenuItem";
-            this.StarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.StarToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.StarToolStripMenuItem.Text = "Звёздочка";
             this.StarToolStripMenuItem.Click += new System.EventHandler(this.StarToolStripMenuItem_Click);
+            // 
+            // EraserToolStripMenuItem
+            // 
+            this.EraserToolStripMenuItem.Name = "EraserToolStripMenuItem";
+            this.EraserToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.EraserToolStripMenuItem.Text = "Ластик";
+            this.EraserToolStripMenuItem.Click += new System.EventHandler(this.EraserToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -327,17 +337,16 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(105, 24);
             this.toolStripLabel1.Text = "Размер кисти:";
             // 
-            // toolStripTextBox1
+            // brushWidth
             // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.MaxLength = 3;
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(40, 27);
+            this.brushWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.brushWidth.MaxLength = 3;
+            this.brushWidth.Name = "brushWidth";
+            this.brushWidth.Size = new System.Drawing.Size(40, 27);
             // 
             // eraser
             // 
             this.eraser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.eraser.Image = ((System.Drawing.Image)(resources.GetObject("eraser.Image")));
             this.eraser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.eraser.Name = "eraser";
             this.eraser.Size = new System.Drawing.Size(29, 24);
@@ -375,6 +384,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Paint";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -412,7 +422,7 @@
         private System.Windows.Forms.ToolStripMenuItem другойToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripTextBox brushWidth;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
@@ -421,6 +431,7 @@
         private System.Windows.Forms.ToolStripMenuItem EllipseToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem StarToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton eraser;
+        private System.Windows.Forms.ToolStripMenuItem EraserToolStripMenuItem;
     }
 }
 
