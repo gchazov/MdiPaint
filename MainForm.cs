@@ -206,5 +206,30 @@ namespace MdiPaint
             DeleteIcons();
             EraserToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
+
+        private void brushWidth_ValueChanged(object sender, EventArgs e)
+        {
+            MainForm.BrushWidth = (int)brushWidth.Value;
+        }
+
+        private void zoom_in_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomIn(((DocumentForm)ActiveMdiChild).Image, new Size(1000, 1000));
+                ((DocumentForm)ActiveMdiChild).Invalidate();
+            }
+            catch { }
+        }
+
+        private void zoom_out_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomOut(((DocumentForm)ActiveMdiChild).Image, new Size(10, 10));
+                ((DocumentForm)ActiveMdiChild).Invalidate();
+            }
+            catch { }
+        }
     }
 }

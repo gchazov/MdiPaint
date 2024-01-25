@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -138,5 +139,24 @@ namespace MdiPaint
             Text = file;
             LocalChanged = false;
         }
+
+        public static Bitmap ZoomIn(Image image, Size size)
+        {
+            Bitmap bitmap = new Bitmap(image, image.Width + (image.Width * size.Width / 100),
+                image.Height + (image.Height * size.Height / 100));
+            Graphics tempGraphics = Graphics.FromImage(bitmap);
+            tempGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            return bitmap;
+        }
+
+        public static Bitmap ZoomOut(Image image, Size size)
+        {
+            Bitmap bitmap = new Bitmap(image, image.Width - (image.Width * size.Width / 100),
+                image.Height - (image.Height * size.Height / 100));
+            Graphics tempGraphics = Graphics.FromImage(bitmap);
+            tempGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            return bitmap;
+        }
+
     }
 }
