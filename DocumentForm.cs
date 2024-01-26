@@ -33,6 +33,7 @@ namespace MdiPaint
 
         private void DocumentForm_MouseMove(object sender, MouseEventArgs e)
         {
+            mainForm.coord.Text = $"X:{e.X} Y:{e.Y}";
             if (e.Button != MouseButtons.Left)
                 return;
             if (mainForm.tools == Tools.Pen || mainForm.tools == Tools.Eraser)
@@ -76,7 +77,7 @@ namespace MdiPaint
         public void ResizeDoc()
         {
             Bitmap tmp = (Bitmap)Image.Clone();
-            Image = new Bitmap(mainForm.ImageW, mainForm.ImageH);
+            Image = new Bitmap(MainForm.ImageW, MainForm.ImageH);
             graphics = Graphics.FromImage(Image);
             graphics.Clear(Color.White);
             for (int Xcount = 0; Xcount < tmp.Width && Xcount < Image.Width; Xcount++)
@@ -95,7 +96,7 @@ namespace MdiPaint
         {
             InitializeComponent();
             mainForm = parent;
-            Image = new Bitmap(parent.ImageW, parent.ImageH);
+            Image = new Bitmap(MainForm.ImageW, MainForm.ImageH);
             Temp = new Bitmap(Image.Width, Image.Height);
             graphics = Graphics.FromImage(Image);
             graphics.Clear(Color.White);
@@ -147,6 +148,11 @@ namespace MdiPaint
             Graphics tempGraphics = Graphics.FromImage(bitmap);
             tempGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
             return bitmap;
+        }
+
+        private void DocumentForm_Leave(object sender, EventArgs e)
+        {
+            mainForm.coord.Text = $"X:0 Y:0";
         }
 
         public static Bitmap ZoomOut(Image image, Size size)

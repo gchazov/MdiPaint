@@ -26,8 +26,8 @@ namespace MdiPaint
             if (ValidateIntInput(w.Text) && ValidateIntInput(h.Text))
             {
                 this.DialogResult = DialogResult.OK;
-                mf.ImageH = int.Parse(h.Text);
-                mf.ImageW = int.Parse(w.Text);
+                MainForm.ImageH = int.Parse(h.Text);
+                MainForm.ImageW = int.Parse(w.Text);
                 this.Close();
             }
             else

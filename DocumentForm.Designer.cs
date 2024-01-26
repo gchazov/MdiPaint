@@ -41,6 +41,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DocumentForm";
             this.Text = "DocumentForm";
+            this.Leave += new System.EventHandler(this.DocumentForm_Leave);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DocumentForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DocumentForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DocumentForm_MouseUp);

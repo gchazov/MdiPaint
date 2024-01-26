@@ -25,9 +25,10 @@ namespace MdiPaint
         public static Color BrushColor { get; set; } = Color.Black;
         public static int BrushWidth { get; set; } = 5;
         public static int CountMdi { get; set; } = 0;
-        public int ImageW { get; set; } = 600;
-        public int ImageH { get; set; } = 600;
+        public static int ImageW { get; set; } = 600;
+        public static int ImageH { get; set; } = 600;
         public bool IsChanged { get; set; } = false;
+        public static Size ZoomSize { get; set; } = new Size((int)(ImageW * 0.05), (int)(ImageH * 0.05));
         public Tools tools { get; set; }
 
 
@@ -35,6 +36,7 @@ namespace MdiPaint
         {
             InitializeComponent();
             PenToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
+            FivetoolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
             brushWidth.Text = BrushWidth.ToString();
         }
 
@@ -216,7 +218,7 @@ namespace MdiPaint
         {
             try
             {
-                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomIn(((DocumentForm)ActiveMdiChild).Image, new Size(1000, 1000));
+                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomIn(((DocumentForm)ActiveMdiChild).Image, ZoomSize);
                 ((DocumentForm)ActiveMdiChild).Invalidate();
             }
             catch { }
@@ -226,10 +228,54 @@ namespace MdiPaint
         {
             try
             {
-                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomOut(((DocumentForm)ActiveMdiChild).Image, new Size(10, 10));
+                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomOut(((DocumentForm)ActiveMdiChild).Image, ZoomSize);
                 ((DocumentForm)ActiveMdiChild).Invalidate();
             }
             catch { }
+        }
+
+        private void DeleteZoomIcons()
+        {
+            FivetoolStripMenuItem.Image = null;
+            TentoolStripMenuItem.Image = null;
+            FifteentoolStripMenuItem.Image = null;
+            TventyfiveStripMenuItem2.Image = null;
+            FourtytoolStripMenuItem2.Image = null;
+        }
+
+        private void FivetoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteZoomIcons();
+            FivetoolStripMenuItem.Image = Properties.Resources.choice;
+            MainForm.ZoomSize = new Size((int)(ImageW * 0.005), (int)(ImageH * 0.005));
+        }
+
+        private void TentoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteZoomIcons();
+            TentoolStripMenuItem.Image = Properties.Resources.choice;
+            MainForm.ZoomSize = new Size((int)(ImageW * 0.01), (int)(ImageH * 0.01));
+        }
+
+        private void FifteentoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteZoomIcons();
+            FifteentoolStripMenuItem.Image = Properties.Resources.choice;
+            MainForm.ZoomSize = new Size((int)(ImageW * 0.015), (int)(ImageH * 0.015));
+        }
+
+        private void TventyfiveStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            DeleteZoomIcons();
+            TventyfiveStripMenuItem2.Image = Properties.Resources.choice;
+            MainForm.ZoomSize = new Size((int)(ImageW * 0.025), (int)(ImageH * 0.025));
+        }
+
+        private void FourtytoolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            DeleteZoomIcons();
+            FourtytoolStripMenuItem2.Image = Properties.Resources.choice;
+            MainForm.ZoomSize = new Size((int)(ImageW * 0.05), (int)(ImageH * 0.05));
         }
     }
 }
