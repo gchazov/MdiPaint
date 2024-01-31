@@ -41,7 +41,7 @@
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(167, 158);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 1;
@@ -51,7 +51,7 @@
             // w
             // 
             this.w.Location = new System.Drawing.Point(167, 42);
-            this.w.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.w.Margin = new System.Windows.Forms.Padding(4);
             this.w.Name = "w";
             this.w.Size = new System.Drawing.Size(83, 22);
             this.w.TabIndex = 2;
@@ -59,7 +59,7 @@
             // h
             // 
             this.h.Location = new System.Drawing.Point(167, 95);
-            this.h.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.h.Margin = new System.Windows.Forms.Padding(4);
             this.h.Name = "h";
             this.h.Size = new System.Drawing.Size(83, 22);
             this.h.TabIndex = 3;
@@ -112,8 +112,8 @@
             this.Controls.Add(this.h);
             this.Controls.Add(this.w);
             this.Controls.Add(this.button2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CanvasSizeForm";

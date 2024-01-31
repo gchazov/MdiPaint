@@ -39,3 +39,4 @@ D:\Desktop\MdiPaint\bin\Debug\Resources\palette.png
 D:\Desktop\MdiPaint\bin\Debug\Resources\red.png
 D:\Desktop\MdiPaint\bin\Debug\Resources\tick.png
 D:\Desktop\MdiPaint\bin\Debug\Resources\choice.jpg
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.StarConfig.resources

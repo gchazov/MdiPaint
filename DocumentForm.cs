@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MdiPaint
@@ -18,11 +12,11 @@ namespace MdiPaint
         private int x, y;
         private MainForm mainForm;
         private Graphics graphics;
-        
 
         public bool LocalChanged { get; set; }
         public Bitmap Image { get; set; }
         public Bitmap Temp { get; set; }
+
 
 
         private void DocumentForm_MouseDown(object sender, MouseEventArgs e)
@@ -61,9 +55,14 @@ namespace MdiPaint
                 case Tools.Ellipse:
                     graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X - x, e.Y - y);
                     break;
+                case Tools.Star:
+                    PointF[] pts = StarPoints(MainForm.StarConfig, new Rectangle(new Point(x, y), new Size(e.X - x, e.Y - y)));
+                    graphics.DrawPolygon(new Pen(MainForm.BrushColor, MainForm.BrushWidth), pts);
+                    Invalidate();
+                    break;
             }
             Invalidate();
-            
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -100,7 +99,7 @@ namespace MdiPaint
             Temp = new Bitmap(Image.Width, Image.Height);
             graphics = Graphics.FromImage(Image);
             graphics.Clear(Color.White);
-            LocalChanged = true;    
+            LocalChanged = true;
             this.Text = $"Рисунок {MainForm.CountMdi}";
 
         }
@@ -114,12 +113,21 @@ namespace MdiPaint
                 Temp = new Bitmap(1, 1);
                 Invalidate();
                 mainForm.IsChanged = true;
-                LocalChanged = true;
-            }
+                LocalChanged = true;            }
             if (mainForm.tools == Tools.Ellipse)
             {
                 graphics = Graphics.FromImage(Image);
-                graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth),x, y, e.X - x, e.Y - y);
+                graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X - x, e.Y - y);
+                Temp = new Bitmap(1, 1);
+                Invalidate();
+                mainForm.IsChanged = true;
+                LocalChanged = true;
+            }
+            if (mainForm.tools == Tools.Star)
+            {
+                graphics = Graphics.FromImage(Image);
+                PointF[] pts = StarPoints(MainForm.StarConfig, new Rectangle(new Point(x, y), new Size(e.X - x, e.Y - y)));
+                graphics.DrawPolygon(new Pen(MainForm.BrushColor, MainForm.BrushWidth), pts);
                 Temp = new Bitmap(1, 1);
                 Invalidate();
                 mainForm.IsChanged = true;
@@ -155,6 +163,36 @@ namespace MdiPaint
             mainForm.coord.Text = $"X:0 Y:0";
         }
 
+        private void DocumentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (LocalChanged)
+            {
+                switch (MessageBox.Show($"Есть несохранённые изменения в {this.Text}.\nВы хотите сохранить рисунок?",
+                    "Сохранение изменений", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
+                {
+                    case DialogResult.Yes:
+                        SaveFileDialog sfd = new SaveFileDialog();
+                        sfd.Filter = "*.bmp|*.bmp|*.jpg|*.jpg|*.png|*.png|All files|*.*";
+                        sfd.FileName = $"{((DocumentForm)mainForm.ActiveMdiChild).Text}";
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            ((DocumentForm)mainForm.ActiveMdiChild).Image.Save(mainForm.ActiveMdiChild.Text);
+                            mainForm.IsChanged = true;
+                            ((DocumentForm)mainForm.ActiveMdiChild).LocalChanged = false;
+                            mainForm.ActiveMdiChild.Text = sfd.FileName;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
+        }
+
         public static Bitmap ZoomOut(Image image, Size size)
         {
             Bitmap bitmap = new Bitmap(image, image.Width - (image.Width * size.Width / 100),
@@ -164,5 +202,28 @@ namespace MdiPaint
             return bitmap;
         }
 
+        private static PointF[] StarPoints(int num_points, Rectangle bounds)
+        {
+            PointF[] pts = new PointF[num_points * 2];
+            double rx = bounds.Width / 2;
+            double ry = bounds.Height / 2;
+            double cx = bounds.X + rx;
+            double cy = bounds.Y + ry;
+
+            double theta = -Math.PI / 2;
+            double dtheta = Math.PI / num_points;
+            for (int i = 0; i < num_points; i++)
+            {
+                pts[2 * i] = new PointF(
+                    (float)(cx + rx * Math.Cos(theta)),
+                    (float)(cy + ry * Math.Sin(theta)));
+                pts[2 * i + 1] = new PointF(
+                    (float)(cx + rx / 2 * Math.Cos(theta + dtheta)),
+                    (float)(cy + ry / 2 * Math.Sin(theta + dtheta)));
+                theta += 2 * dtheta;
+            }
+
+            return pts;
+        }
     }
 }

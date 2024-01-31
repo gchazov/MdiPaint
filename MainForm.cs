@@ -1,13 +1,6 @@
-﻿using MdiPaint.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MdiPaint
@@ -28,6 +21,7 @@ namespace MdiPaint
         public static int ImageW { get; set; } = 600;
         public static int ImageH { get; set; } = 600;
         public bool IsChanged { get; set; } = false;
+        public static int StarConfig { get; set; } = 5;
         public static Size ZoomSize { get; set; } = new Size((int)(ImageW * 0.05), (int)(ImageH * 0.05));
         public Tools tools { get; set; }
 
@@ -65,7 +59,7 @@ namespace MdiPaint
 
         private void canvasSize_Click(object sender, EventArgs e)
         {
-            CanvasSizeForm csf = new CanvasSizeForm(this);
+            CanvasSizeForm csf = new CanvasSizeForm();
             if (csf.ShowDialog() == DialogResult.OK)
             {
                 ((DocumentForm)ActiveMdiChild).ResizeDoc();
@@ -146,14 +140,14 @@ namespace MdiPaint
             return rgx.IsMatch(s);
         }
 
-        private void Save_Click(object sender, EventArgs e)
+        public void Save_Click(object sender, EventArgs e)
         {
             ((DocumentForm)ActiveMdiChild).Image.Save(ActiveMdiChild.Text);
             IsChanged = true;
             ((DocumentForm)ActiveMdiChild).LocalChanged = false;
         }
 
-        private void SaveAs_Click(object sender, EventArgs e)
+        public void SaveAs_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "*.bmp|*.bmp|*.jpg|*.jpg|*.png|*.png|All files|*.*";
@@ -276,6 +270,12 @@ namespace MdiPaint
             DeleteZoomIcons();
             FourtytoolStripMenuItem2.Image = Properties.Resources.choice;
             MainForm.ZoomSize = new Size((int)(ImageW * 0.05), (int)(ImageH * 0.05));
+        }
+
+        private void StarConfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StarConfig sc = new StarConfig();
+            sc.ShowDialog();
         }
     }
 }
