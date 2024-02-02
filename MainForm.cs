@@ -23,8 +23,9 @@ namespace MdiPaint
         public bool IsChanged { get; set; } = false;
         public static int StarConfig { get; set; } = 5;
         public static int SaveCount { get; set; } = 0;
-        public static Size ZoomSize { get; set; } = new Size((int)(ImageW * 0.005), (int)(ImageH * 0.005));
-        public Tools tools { get; set; }
+        public static float Zoom { get; set; } = 1.0f;
+        public static float ZoomRange { get; set; } = 0.1f;
+        public Tools Tools { get; set; }
 
 
         public MainForm()
@@ -144,6 +145,10 @@ namespace MdiPaint
 
         public void Save_Click(object sender, EventArgs e)
         {
+            if (ActiveMdiChild == null)
+            {
+                return;
+            }
             Regex regex = new Regex(@"^Рисунок*");
             if (regex.IsMatch(ActiveMdiChild.Text))
             {
@@ -159,6 +164,10 @@ namespace MdiPaint
 
         public void SaveAs_Click(object sender, EventArgs e)
         {
+            if (ActiveMdiChild == null)
+            {
+                return;
+            }
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "*.bmp|*.bmp|*.jpg|*.jpg|*.png|*.png|All files|*.*";
             sfd.FileName = $"{((DocumentForm)ActiveMdiChild).Text}";
@@ -182,35 +191,35 @@ namespace MdiPaint
 
         private void PenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.tools = Tools.Pen;
+            this.Tools = Tools.Pen;
             DeleteIcons();
             PenToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
 
         private void LineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.tools = Tools.Line;
+            this.Tools = Tools.Line;
             DeleteIcons();
             LineToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
 
         private void EllipseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            this.tools = Tools.Ellipse;
+            this.Tools = Tools.Ellipse;
             DeleteIcons();
             EllipseToolStripMenuItem1.Image = MdiPaint.Properties.Resources.choice;
         }
 
         private void StarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.tools = Tools.Star;
+            this.Tools = Tools.Star;
             DeleteIcons();
             StarToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
 
         private void EraserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.tools = Tools.Eraser;
+            this.Tools = Tools.Eraser;
             DeleteIcons();
             EraserToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
         }
@@ -224,8 +233,7 @@ namespace MdiPaint
         {
             try
             {
-                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomIn(((DocumentForm)ActiveMdiChild).Image, ZoomSize);
-                ((DocumentForm)ActiveMdiChild).Invalidate();
+                ((DocumentForm)ActiveMdiChild).ZoomIn();
             }
             catch { }
         }
@@ -234,8 +242,7 @@ namespace MdiPaint
         {
             try
             {
-                ((DocumentForm)ActiveMdiChild).Image = DocumentForm.ZoomOut(((DocumentForm)ActiveMdiChild).Image, ZoomSize);
-                ((DocumentForm)ActiveMdiChild).Invalidate();
+                ((DocumentForm)ActiveMdiChild).ZoomOut();
             }
             catch { }
         }
@@ -245,44 +252,29 @@ namespace MdiPaint
             FivetoolStripMenuItem.Image = null;
             TentoolStripMenuItem.Image = null;
             FifteentoolStripMenuItem.Image = null;
-            TventyfiveStripMenuItem2.Image = null;
-            FourtytoolStripMenuItem2.Image = null;
         }
 
         private void FivetoolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteZoomIcons();
             FivetoolStripMenuItem.Image = Properties.Resources.choice;
-            MainForm.ZoomSize = new Size((int)(ImageW * 0.005), (int)(ImageH * 0.005));
+            MainForm.ZoomRange = 0.05f;
         }
 
         private void TentoolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteZoomIcons();
             TentoolStripMenuItem.Image = Properties.Resources.choice;
-            MainForm.ZoomSize = new Size((int)(ImageW * 0.01), (int)(ImageH * 0.01));
+            MainForm.ZoomRange = 0.1f;
         }
 
         private void FifteentoolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteZoomIcons();
             FifteentoolStripMenuItem.Image = Properties.Resources.choice;
-            MainForm.ZoomSize = new Size((int)(ImageW * 0.015), (int)(ImageH * 0.015));
+            MainForm.ZoomRange = 0.15f;
         }
 
-        private void TventyfiveStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            DeleteZoomIcons();
-            TventyfiveStripMenuItem2.Image = Properties.Resources.choice;
-            MainForm.ZoomSize = new Size((int)(ImageW * 0.025), (int)(ImageH * 0.025));
-        }
-
-        private void FourtytoolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            DeleteZoomIcons();
-            FourtytoolStripMenuItem2.Image = Properties.Resources.choice;
-            MainForm.ZoomSize = new Size((int)(ImageW * 0.05), (int)(ImageH * 0.05));
-        }
 
         private void StarConfToolStripMenuItem_Click(object sender, EventArgs e)
         {

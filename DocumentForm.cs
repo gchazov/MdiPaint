@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MdiPaint
 {
@@ -22,55 +23,60 @@ namespace MdiPaint
 
         private void DocumentForm_MouseDown(object sender, MouseEventArgs e)
         {
-            x = e.X;
-            y = e.Y;
+            x = (int)(e.X / MainForm.Zoom);
+            y = (int)(e.Y / MainForm.Zoom);
         }
 
         private void DocumentForm_MouseMove(object sender, MouseEventArgs e)
         {
+            int x = (int)(e.X / MainForm.Zoom);
+            int y = (int)(e.Y / MainForm.Zoom);
             mainForm.coord.Text = $"X:{e.X} Y:{e.Y}";
             if (e.Button != MouseButtons.Left)
                 return;
-            if (mainForm.tools == Tools.Pen || mainForm.tools == Tools.Eraser)
+            if (mainForm.Tools == Tools.Pen || mainForm.Tools == Tools.Eraser)
             {
                 graphics = Graphics.FromImage(Image);
-                Color paintingColor = mainForm.tools == Tools.Eraser ? Color.White : MainForm.BrushColor;
+                Color paintingColor = mainForm.Tools == Tools.Eraser ? Color.White : MainForm.BrushColor;
                 var pen = new Pen(paintingColor, MainForm.BrushWidth);
                 pen.StartCap = LineCap.Round;
                 pen.EndCap = LineCap.Round;
-                graphics.DrawLine(pen, x, y, e.X, e.Y);
-                x = e.X;
-                y = e.Y;
-                Invalidate();
+                graphics.DrawLine(pen, this.x, this.y, x, y);
                 mainForm.IsChanged = true;
                 LocalChanged = true;
-                return;
-            }
-            Temp = new Bitmap(Image.Width, Image.Height);
-            graphics = Graphics.FromImage(Temp);
-            switch (mainForm.tools)
-            {
-                case Tools.Line:
-                    graphics.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X, e.Y);
-                    break;
-                case Tools.Ellipse:
-                    graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X - x, e.Y - y);
-                    break;
-                case Tools.Star:
-                    PointF[] pts = StarPoints(MainForm.StarConfig, new Rectangle(new Point(x, y), new Size(e.X - x, e.Y - y)));
-                    graphics.DrawPolygon(new Pen(MainForm.BrushColor, MainForm.BrushWidth), pts);
-                    Invalidate();
-                    break;
-            }
-            Invalidate();
 
+                Invalidate();
+                this.x = x;
+                this.y = y;
+            }
+            else
+            {
+                Temp = new Bitmap(Image.Width, Image.Height);
+                graphics = Graphics.FromImage(Temp);
+                switch (mainForm.Tools)
+                {
+                    case Tools.Line:
+                        graphics.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), this.x, this.y, x, y);
+                        break;
+                    case Tools.Ellipse:
+                        graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth), this.x, this.y, x - this.x, y - this.y);
+                        break;
+                    case Tools.Star:
+                        PointF[] pts = StarPoints(MainForm.StarConfig, new Rectangle(new Point(this.x, this.y), new Size(x - this.x, y - this.y)));
+                        graphics.DrawPolygon(new Pen(MainForm.BrushColor, MainForm.BrushWidth), pts);
+                        break;
+                }
+                Invalidate();
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.DrawImage(Image, 0, 0);
-            if (mainForm.tools == Tools.Line || mainForm.tools == Tools.Ellipse || mainForm.tools == Tools.Star)
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            e.Graphics.ScaleTransform(MainForm.Zoom, MainForm.Zoom); // Применяем масштабирование
+            e.Graphics.DrawImage(Image, 0, 0); // Рисуем изображение
+            if (mainForm.Tools == Tools.Line || mainForm.Tools == Tools.Ellipse || mainForm.Tools == Tools.Star)
                 e.Graphics.DrawImage(Temp, 0, 0);
         }
 
@@ -107,33 +113,26 @@ namespace MdiPaint
 
         private void DocumentForm_MouseUp(object sender, MouseEventArgs e)
         {
-            if (mainForm.tools == Tools.Line)
+            if (mainForm.Tools == Tools.Line)
             {
                 graphics = Graphics.FromImage(Image);
-                graphics.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X, e.Y);
-                Temp = new Bitmap(1, 1);
-                Invalidate();
-                mainForm.IsChanged = true;
-                LocalChanged = true;            }
-            if (mainForm.tools == Tools.Ellipse)
-            {
-                graphics = Graphics.FromImage(Image);
-                graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, e.X - x, e.Y - y);
-                Temp = new Bitmap(1, 1);
-                Invalidate();
-                mainForm.IsChanged = true;
-                LocalChanged = true;
+                graphics.DrawLine(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, (int)(e.X / MainForm.Zoom), (int)(e.Y / MainForm.Zoom));
             }
-            if (mainForm.tools == Tools.Star)
+            if (mainForm.Tools == Tools.Ellipse)
             {
                 graphics = Graphics.FromImage(Image);
-                PointF[] pts = StarPoints(MainForm.StarConfig, new Rectangle(new Point(x, y), new Size(e.X - x, e.Y - y)));
+                graphics.DrawEllipse(new Pen(MainForm.BrushColor, MainForm.BrushWidth), x, y, (int)((e.X / MainForm.Zoom - x)), (int)((e.Y / MainForm.Zoom - y)));
+            }
+            if (mainForm.Tools == Tools.Star)
+            {
+                graphics = Graphics.FromImage(Image);
+                PointF[] pts = StarPoints(MainForm.StarConfig, new Rectangle(new Point(x, y), new Size((int)((e.X / MainForm.Zoom - x)), (int)((e.Y / MainForm.Zoom - y)))));
                 graphics.DrawPolygon(new Pen(MainForm.BrushColor, MainForm.BrushWidth), pts);
-                Temp = new Bitmap(1, 1);
-                Invalidate();
-                mainForm.IsChanged = true;
-                LocalChanged = true;
             }
+            Temp = new Bitmap(1, 1);
+            Invalidate();
+            mainForm.IsChanged = true;
+            LocalChanged = true;
         }
 
 
@@ -150,15 +149,7 @@ namespace MdiPaint
             LocalChanged = false;
         }
 
-        public static Bitmap ZoomIn(Image image, Size size)
-        {
-            Bitmap bitmap = new Bitmap(image, image.Width + (image.Width * size.Width / 100),
-                image.Height + (image.Height * size.Height / 100));
-            Graphics tempGraphics = Graphics.FromImage(bitmap);
-            tempGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            return bitmap;
-        }
-
+        
         private void DocumentForm_Leave(object sender, EventArgs e)
         {
             mainForm.coord.Text = $"X:0 Y:0";
@@ -198,13 +189,16 @@ namespace MdiPaint
             }
         }
 
-        public static Bitmap ZoomOut(Image image, Size size)
+        public void ZoomOut()
         {
-            Bitmap bitmap = new Bitmap(image, image.Width - (image.Width * size.Width / 100),
-                image.Height - (image.Height * size.Height / 100));
-            Graphics tempGraphics = Graphics.FromImage(bitmap);
-            tempGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            return bitmap;
+            MainForm.Zoom -= MainForm.ZoomRange;
+            Invalidate();
+        }
+
+        public void ZoomIn()
+        {
+            MainForm.Zoom += MainForm.ZoomRange;
+            Invalidate();
         }
 
         private static PointF[] StarPoints(int num_points, Rectangle bounds)
