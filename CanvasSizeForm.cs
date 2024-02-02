@@ -9,6 +9,8 @@ namespace MdiPaint
         public CanvasSizeForm()
         {
             InitializeComponent();
+            h.Text = MainForm.ImageH.ToString();
+            w.Text = MainForm.ImageW.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
