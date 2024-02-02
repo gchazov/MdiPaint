@@ -16,6 +16,7 @@ namespace MdiPaint
         public bool LocalChanged { get; set; }
         public Bitmap Image { get; set; }
         public Bitmap Temp { get; set; }
+        private bool IsClosing { get; set; } = false;
 
 
 
@@ -165,7 +166,7 @@ namespace MdiPaint
 
         private void DocumentForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (LocalChanged)
+            if (LocalChanged && !IsClosing)
             {
                 switch (MessageBox.Show($"Есть несохранённые изменения в {this.Text}.\nВы хотите сохранить рисунок?",
                     "Сохранение изменений", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
@@ -173,13 +174,13 @@ namespace MdiPaint
                     case DialogResult.Yes:
                         SaveFileDialog sfd = new SaveFileDialog();
                         sfd.Filter = "*.bmp|*.bmp|*.jpg|*.jpg|*.png|*.png|All files|*.*";
-                        sfd.FileName = $"{((DocumentForm)mainForm.ActiveMdiChild).Text}";
+                        sfd.FileName = $"{this.Text}";
                         if (sfd.ShowDialog() == DialogResult.OK)
                         {
-                            ((DocumentForm)mainForm.ActiveMdiChild).Image.Save(mainForm.ActiveMdiChild.Text);
+                            this.Image.Save(sfd.FileName);
                             mainForm.IsChanged = true;
-                            ((DocumentForm)mainForm.ActiveMdiChild).LocalChanged = false;
-                            mainForm.ActiveMdiChild.Text = sfd.FileName;
+                            this.LocalChanged = false;
+                            this.Text = sfd.FileName;
                         }
                         else
                         {
@@ -188,6 +189,10 @@ namespace MdiPaint
                         break;
                     case DialogResult.Cancel:
                         e.Cancel = true;
+                        break;
+                    case DialogResult.No:
+                        IsClosing = true;
+                        this.Close();
                         break;
                 }
             }

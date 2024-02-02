@@ -37,7 +37,8 @@ namespace MdiPaint
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            //Application.Exit();
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
