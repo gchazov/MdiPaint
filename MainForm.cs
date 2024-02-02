@@ -22,7 +22,8 @@ namespace MdiPaint
         public static int ImageH { get; set; } = 600;
         public bool IsChanged { get; set; } = false;
         public static int StarConfig { get; set; } = 5;
-        public static Size ZoomSize { get; set; } = new Size((int)(ImageW * 0.05), (int)(ImageH * 0.05));
+        public static int SaveCount { get; set; } = 0;
+        public static Size ZoomSize { get; set; } = new Size((int)(ImageW * 0.005), (int)(ImageH * 0.005));
         public Tools tools { get; set; }
 
 
@@ -142,9 +143,17 @@ namespace MdiPaint
 
         public void Save_Click(object sender, EventArgs e)
         {
-            ((DocumentForm)ActiveMdiChild).Image.Save(ActiveMdiChild.Text);
-            IsChanged = true;
-            ((DocumentForm)ActiveMdiChild).LocalChanged = false;
+            Regex regex = new Regex(@"^Рисунок*");
+            if (regex.IsMatch(ActiveMdiChild.Text))
+            {
+                SaveAs_Click(sender, e);
+            }
+            else
+            {
+                ((DocumentForm)ActiveMdiChild).Image.Save(ActiveMdiChild.Text);
+                IsChanged = true;
+                ((DocumentForm)ActiveMdiChild).LocalChanged = false;
+            }
         }
 
         public void SaveAs_Click(object sender, EventArgs e)
@@ -154,7 +163,9 @@ namespace MdiPaint
             sfd.FileName = $"{((DocumentForm)ActiveMdiChild).Text}";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                Save_Click(sender, e);
+                ((DocumentForm)ActiveMdiChild).Image.Save(sfd.FileName);
+                IsChanged = true;
+                ((DocumentForm)ActiveMdiChild).LocalChanged = false;
                 ActiveMdiChild.Text = sfd.FileName;
             }
         }
@@ -276,6 +287,11 @@ namespace MdiPaint
         {
             StarConfig sc = new StarConfig();
             sc.ShowDialog();
+        }
+
+        private void blackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BrushColor = Color.Black;
         }
     }
 }

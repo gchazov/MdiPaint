@@ -42,6 +42,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DocumentForm";
+            this.ShowIcon = false;
             this.Text = "DocumentForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DocumentForm_FormClosing);
             this.Leave += new System.EventHandler(this.DocumentForm_Leave);
