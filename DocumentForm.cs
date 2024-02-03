@@ -31,7 +31,7 @@ namespace MdiPaint
         {
             int x = (int)(e.X / MainForm.Zoom);
             int y = (int)(e.Y / MainForm.Zoom);
-            mainForm.coord.Text = $"X:{e.X} Y:{e.Y}";
+            mainForm.coord.Text = $"X:{x} Y:{y}";
             if (e.Button != MouseButtons.Left)
                 return;
             if (mainForm.Tools == Tools.Pen || mainForm.Tools == Tools.Eraser)
