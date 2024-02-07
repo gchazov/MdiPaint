@@ -40,3 +40,31 @@ D:\Desktop\MdiPaint\bin\Debug\Resources\red.png
 D:\Desktop\MdiPaint\bin\Debug\Resources\tick.png
 D:\Desktop\MdiPaint\bin\Debug\Resources\choice.jpg
 D:\Desktop\MdiPaint\obj\Debug\MdiPaint.StarConfig.resources
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\hse.bmp
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\blue.jpg
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\green.jpg
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\hse_crow.jpg
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\hse_logo.jpg
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\otherColors.jpg
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\choice.jpg
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\colors.png
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\eraser.png
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\hse.png
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\palette.png
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\red.png
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\tick.png
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\MdiPaint.exe.config
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\MdiPaint.exe
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\MdiPaint.pdb
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.csproj.AssemblyReference.cache
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.AboutBox.resources
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.CanvasSizeForm.resources
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.DocumentForm.resources
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.MainForm.resources
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.Properties.Resources.resources
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.StarConfig.resources
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.csproj.GenerateResource.cache
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.exe
+D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.pdb

@@ -24,7 +24,7 @@ namespace MdiPaint
         public static int StarConfig { get; set; } = 5;
         public static int SaveCount { get; set; } = 0;
         public static float Zoom { get; set; } = 1.0f;
-        public static float ZoomRange { get; set; } = 0.1f;
+        public static float ZoomRange { get; set; } = 0.05f;
         public Tools Tools { get; set; }
 
 

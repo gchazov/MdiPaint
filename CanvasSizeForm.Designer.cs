@@ -52,6 +52,7 @@
             // 
             this.w.Location = new System.Drawing.Point(167, 42);
             this.w.Margin = new System.Windows.Forms.Padding(4);
+            this.w.MaxLength = 4;
             this.w.Name = "w";
             this.w.Size = new System.Drawing.Size(83, 22);
             this.w.TabIndex = 2;
@@ -60,6 +61,7 @@
             // 
             this.h.Location = new System.Drawing.Point(167, 95);
             this.h.Margin = new System.Windows.Forms.Padding(4);
+            this.h.MaxLength = 4;
             this.h.Name = "h";
             this.h.Size = new System.Drawing.Size(83, 22);
             this.h.TabIndex = 3;
@@ -88,7 +90,6 @@
             // 
             // button1
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(39, 158);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
@@ -117,6 +118,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CanvasSizeForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Размер холста";
             this.ResumeLayout(false);

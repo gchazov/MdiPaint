@@ -24,16 +24,15 @@ namespace MdiPaint
             int num = 0;
             string msgText = "";
             int.TryParse(number.Text, out num);
-            if (number.Text != "" && num >= 3)
+            if (number.Text != "" && num >= 4)
             {
                 MainForm.StarConfig = int.Parse(number.Text);
                 this.Close();
             }
             else
             {
-                if (num < 3)
-                    msgText = num < 3 ? "У звезды должно быть хотя бы три конца!" : "Не оставляйте поле ввода пустым или нулевым!";
-                MessageBox.Show(msgText, "Ошибка", MessageBoxButtons.OK);
+                msgText = num < 4 ? "У звезды должно быть хотя бы 4 конца!" : "Не оставляйте поле ввода пустым или нулевым!";
+                MessageBox.Show(msgText, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

@@ -77,6 +77,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "StarConfig";
+            this.ShowIcon = false;
             this.Text = "Количество концов звезды";
             this.ResumeLayout(false);
             this.PerformLayout();

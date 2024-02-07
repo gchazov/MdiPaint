@@ -21,17 +21,19 @@ namespace MdiPaint
             int.TryParse(w.Text, out width);
 
             if (ValidateIntInput(w.Text) && ValidateIntInput(h.Text)
-                && height > 0 && width > 0)
+                && height > 0 && width > 0 && width <= 1980 && height <= 1080)
             {
-                this.DialogResult = DialogResult.OK;
                 MainForm.ImageH = int.Parse(h.Text);
                 MainForm.ImageW = int.Parse(w.Text);
+                DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Неправильно введены значения!", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                h.Text = MainForm.ImageH.ToString();
+                w.Text = MainForm.ImageW.ToString();
             }
         }
 
