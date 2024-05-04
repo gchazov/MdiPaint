@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using PluginInterface;
 
 namespace MdiPaint
 {
@@ -26,7 +31,81 @@ namespace MdiPaint
         public static float Zoom { get; set; } = 1.0f;
         public static float ZoomRange { get; set; } = 0.05f;
         public Tools Tools { get; set; }
+        public Dictionary<string, IPlugin> plugins = new Dictionary<string, IPlugin>();
 
+        void FindPlugins()
+        {
+            ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
+
+            string configFileName = "PluginsConnect.config";
+            string configFilePath;
+            try
+            {
+                configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, configFileName);
+            }
+            catch (FileNotFoundException)
+            {
+                return;
+            }
+            configFileMap.ExeConfigFilename = configFilePath;
+
+            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
+            string pluginPathsValue;
+            try
+            {
+                pluginPathsValue = config.AppSettings.Settings["PluginConnect"].Value;
+            }
+            catch (NullReferenceException)
+            {
+                return;
+            }
+            string[] pluginPaths = pluginPathsValue.Split(';');
+
+            foreach (string path in pluginPaths)
+            {
+                try
+                {
+                    Assembly assembly = Assembly.LoadFile(path);
+
+                    foreach (Type type in assembly.GetTypes())
+                    {
+                        Type iface = type.GetInterface("PluginInterface.IPlugin");
+
+                        if (iface != null)
+                        {
+                            IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
+                            plugins.Add(plugin.Name, plugin);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка загрузки плагина ({path})\n" + ex.Message);
+                }
+            }
+        }
+        private void CreatePluginsMenu()
+        {
+            foreach (var p in plugins)
+            {
+                var item = filterToolStripMenuItem.DropDownItems.Add(p.Value.Name);
+                item.Click += OnPluginClick;
+            }
+        }
+
+        private void OnPluginClick(object sender, EventArgs args)
+        {
+            IPlugin plugin = plugins[((ToolStripMenuItem)sender).Text];
+            try
+            {
+                plugin.Transform((Bitmap)((DocumentForm)ActiveMdiChild).Image);
+                ((DocumentForm)ActiveMdiChild).Invalidate();
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Вы не выбрали изображение!");
+            }
+        }
 
         public MainForm()
         {
@@ -34,6 +113,8 @@ namespace MdiPaint
             PenToolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
             FivetoolStripMenuItem.Image = MdiPaint.Properties.Resources.choice;
             brushWidth.Text = BrushWidth.ToString();
+            FindPlugins();
+            CreatePluginsMenu();
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)

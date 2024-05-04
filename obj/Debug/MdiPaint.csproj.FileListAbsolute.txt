@@ -1,16 +1,3 @@
-D:\Desktop\MdiPaint\bin\Debug\MdiPaint.exe.config
-D:\Desktop\MdiPaint\bin\Debug\MdiPaint.exe
-D:\Desktop\MdiPaint\bin\Debug\MdiPaint.pdb
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.AssemblyReference.cache
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.SuggestedBindingRedirects.cache
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.MainForm.resources
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.GenerateResource.cache
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.exe
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.pdb
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.AboutBox.resources
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.DocumentForm.resources
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.CanvasSizeForm.resources
 D:\Desktop\Paint\MdiPaint\bin\Debug\MdiPaint.exe.config
 D:\Desktop\Paint\MdiPaint\bin\Debug\MdiPaint.exe
 D:\Desktop\Paint\MdiPaint\bin\Debug\MdiPaint.pdb
@@ -25,21 +12,6 @@ D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.csproj.GenerateResource.cache
 D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
 D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.exe
 D:\Desktop\Paint\MdiPaint\obj\Debug\MdiPaint.pdb
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.Properties.Resources.resources
-D:\Desktop\MdiPaint\bin\Debug\Resources\hse.bmp
-D:\Desktop\MdiPaint\bin\Debug\Resources\blue.jpg
-D:\Desktop\MdiPaint\bin\Debug\Resources\green.jpg
-D:\Desktop\MdiPaint\bin\Debug\Resources\hse_crow.jpg
-D:\Desktop\MdiPaint\bin\Debug\Resources\hse_logo.jpg
-D:\Desktop\MdiPaint\bin\Debug\Resources\otherColors.jpg
-D:\Desktop\MdiPaint\bin\Debug\Resources\colors.png
-D:\Desktop\MdiPaint\bin\Debug\Resources\eraser.png
-D:\Desktop\MdiPaint\bin\Debug\Resources\hse.png
-D:\Desktop\MdiPaint\bin\Debug\Resources\palette.png
-D:\Desktop\MdiPaint\bin\Debug\Resources\red.png
-D:\Desktop\MdiPaint\bin\Debug\Resources\tick.png
-D:\Desktop\MdiPaint\bin\Debug\Resources\choice.jpg
-D:\Desktop\MdiPaint\obj\Debug\MdiPaint.StarConfig.resources
 D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\hse.bmp
 D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\blue.jpg
 D:\Desktop\HSE\2 курс\КПО\MdiPaint\bin\Debug\Resources\green.jpg
@@ -68,3 +40,37 @@ D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.csproj.GenerateReso
 D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
 D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.exe
 D:\Desktop\HSE\2 курс\КПО\MdiPaint\obj\Debug\MdiPaint.pdb
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse.bmp
+D:\Desktop\MdiPaint\bin\Debug\Resources\blue.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\green.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse_crow.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse_logo.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\otherColors.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\choice.jpg
+D:\Desktop\MdiPaint\bin\Debug\Resources\colors.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\eraser.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\hse.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\palette.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\red.png
+D:\Desktop\MdiPaint\bin\Debug\Resources\tick.png
+D:\Desktop\MdiPaint\bin\Debug\MdiPaint.exe.config
+D:\Desktop\MdiPaint\bin\Debug\MdiPaint.exe
+D:\Desktop\MdiPaint\bin\Debug\MdiPaint.pdb
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.AssemblyReference.cache
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.SuggestedBindingRedirects.cache
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.AboutBox.resources
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.CanvasSizeForm.resources
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.DocumentForm.resources
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.MainForm.resources
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.Properties.Resources.resources
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.StarConfig.resources
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.GenerateResource.cache
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.exe
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.pdb
+D:\Desktop\MdiPaint\bin\Debug\PluginInterface.dll
+D:\Desktop\MdiPaint\bin\Debug\ReversePlugin.dll
+D:\Desktop\MdiPaint\bin\Debug\PluginInterface.pdb
+D:\Desktop\MdiPaint\bin\Debug\ReversePlugin.pdb
+D:\Desktop\MdiPaint\obj\Debug\MdiPaint.csproj.CopyComplete
+D:\Desktop\MdiPaint\bin\Debug\PluginsConnect.config

@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -97,6 +98,9 @@
     <EmbeddedResource Include="StarConfig.resx">
       <DependentUpon>StarConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="PluginsConnect.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -168,6 +172,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\choice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
+      <Project>{1b250a0e-3a48-43bb-83e6-cf7a16f91888}</Project>
+      <Name>PluginInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReversePlugin\ReversePlugin.csproj">
+      <Project>{182cf697-1ceb-407f-9d93-a8a39dab2931}</Project>
+      <Name>ReversePlugin</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
