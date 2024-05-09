@@ -1,0 +1,9 @@
+D:\Desktop\MdiPaint\NegativePlugin\bin\Debug\NegativePlugin.dll
+D:\Desktop\MdiPaint\NegativePlugin\bin\Debug\NegativePlugin.pdb
+D:\Desktop\MdiPaint\NegativePlugin\bin\Debug\PluginInterface.dll
+D:\Desktop\MdiPaint\NegativePlugin\bin\Debug\PluginInterface.pdb
+D:\Desktop\MdiPaint\NegativePlugin\obj\Debug\NegativePlugin.csproj.AssemblyReference.cache
+D:\Desktop\MdiPaint\NegativePlugin\obj\Debug\NegativePlugin.csproj.CoreCompileInputs.cache
+D:\Desktop\MdiPaint\NegativePlugin\obj\Debug\NegativePlugin.csproj.CopyComplete
+D:\Desktop\MdiPaint\NegativePlugin\obj\Debug\NegativePlugin.dll
+D:\Desktop\MdiPaint\NegativePlugin\obj\Debug\NegativePlugin.pdb

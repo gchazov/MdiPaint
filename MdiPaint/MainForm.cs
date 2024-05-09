@@ -367,5 +367,10 @@ namespace MdiPaint
         {
             BrushColor = Color.Black;
         }
+
+        private void PlugInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new PlugInfo(plugins)).ShowDialog();
+        }
     }
 }

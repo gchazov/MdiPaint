@@ -92,9 +92,7 @@ D:\Desktop\MdiPaint\MdiPaint\bin\Debug\MdiPaint.exe.config
 D:\Desktop\MdiPaint\MdiPaint\bin\Debug\MdiPaint.exe
 D:\Desktop\MdiPaint\MdiPaint\bin\Debug\MdiPaint.pdb
 D:\Desktop\MdiPaint\MdiPaint\bin\Debug\PluginInterface.dll
-D:\Desktop\MdiPaint\MdiPaint\bin\Debug\ReversePlugin.dll
 D:\Desktop\MdiPaint\MdiPaint\bin\Debug\PluginInterface.pdb
-D:\Desktop\MdiPaint\MdiPaint\bin\Debug\ReversePlugin.pdb
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.csproj.AssemblyReference.cache
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.csproj.SuggestedBindingRedirects.cache
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.AboutBox.resources
@@ -108,3 +106,4 @@ D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.csproj.CoreCompileInputs.cache
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.csproj.CopyComplete
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.exe
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.pdb
+D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.PlugInfo.resources

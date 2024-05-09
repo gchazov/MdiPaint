@@ -1,0 +1,9 @@
+D:\Desktop\MdiPaint\SobelPlugin\obj\Debug\SobelPlugin.csproj.AssemblyReference.cache
+D:\Desktop\MdiPaint\SobelPlugin\obj\Debug\SobelPlugin.csproj.CoreCompileInputs.cache
+D:\Desktop\MdiPaint\SobelPlugin\bin\Debug\SobelPlugin.dll
+D:\Desktop\MdiPaint\SobelPlugin\bin\Debug\SobelPlugin.pdb
+D:\Desktop\MdiPaint\SobelPlugin\bin\Debug\PluginInterface.dll
+D:\Desktop\MdiPaint\SobelPlugin\bin\Debug\PluginInterface.pdb
+D:\Desktop\MdiPaint\SobelPlugin\obj\Debug\SobelPlugin.csproj.CopyComplete
+D:\Desktop\MdiPaint\SobelPlugin\obj\Debug\SobelPlugin.dll
+D:\Desktop\MdiPaint\SobelPlugin\obj\Debug\SobelPlugin.pdb

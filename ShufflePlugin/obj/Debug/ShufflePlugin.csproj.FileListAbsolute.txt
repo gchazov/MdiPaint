@@ -1,0 +1,9 @@
+D:\Desktop\MdiPaint\ShufflePlugin\bin\Debug\ShufflePlugin.dll
+D:\Desktop\MdiPaint\ShufflePlugin\bin\Debug\ShufflePlugin.pdb
+D:\Desktop\MdiPaint\ShufflePlugin\bin\Debug\PluginInterface.dll
+D:\Desktop\MdiPaint\ShufflePlugin\bin\Debug\PluginInterface.pdb
+D:\Desktop\MdiPaint\ShufflePlugin\obj\Debug\ShufflePlugin.csproj.AssemblyReference.cache
+D:\Desktop\MdiPaint\ShufflePlugin\obj\Debug\ShufflePlugin.csproj.CoreCompileInputs.cache
+D:\Desktop\MdiPaint\ShufflePlugin\obj\Debug\ShufflePlugin.csproj.CopyComplete
+D:\Desktop\MdiPaint\ShufflePlugin\obj\Debug\ShufflePlugin.dll
+D:\Desktop\MdiPaint\ShufflePlugin\obj\Debug\ShufflePlugin.pdb

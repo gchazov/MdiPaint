@@ -4,3 +4,9 @@ D:\Desktop\MdiPaintWithPlugins\PluginInterface\obj\Debug\PluginInterface.csproj.
 D:\Desktop\MdiPaintWithPlugins\PluginInterface\obj\Debug\PluginInterface.csproj.CoreCompileInputs.cache
 D:\Desktop\MdiPaintWithPlugins\PluginInterface\obj\Debug\PluginInterface.dll
 D:\Desktop\MdiPaintWithPlugins\PluginInterface\obj\Debug\PluginInterface.pdb
+D:\Desktop\MdiPaint\PluginInterface\bin\Debug\PluginInterface.dll
+D:\Desktop\MdiPaint\PluginInterface\bin\Debug\PluginInterface.pdb
+D:\Desktop\MdiPaint\PluginInterface\obj\Debug\PluginInterface.csproj.AssemblyReference.cache
+D:\Desktop\MdiPaint\PluginInterface\obj\Debug\PluginInterface.csproj.CoreCompileInputs.cache
+D:\Desktop\MdiPaint\PluginInterface\obj\Debug\PluginInterface.dll
+D:\Desktop\MdiPaint\PluginInterface\obj\Debug\PluginInterface.pdb
