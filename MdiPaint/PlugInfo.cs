@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PluginInterface;
+using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MdiPaint
@@ -17,8 +19,18 @@ namespace MdiPaint
             plugins.Columns.Add("plugin_ver", "Версия");
             foreach (var plugin in mf.allPlugins.Values)
             {
-                
-                plugins.Rows.Add(mf.pluginsForDisplay.Contains(plugin.Name), plugin.Name, plugin.Author, plugin);
+                Type pluginType = plugin.GetType();
+
+                VersionAttribute versionAttribute = (VersionAttribute)pluginType.GetCustomAttributes(typeof(VersionAttribute), false).FirstOrDefault();
+                int majorVersion = 0;
+                int minorVersion = 0;
+                if (versionAttribute != null)
+                {
+                    majorVersion = versionAttribute.Major;
+                    minorVersion = versionAttribute.Minor;
+                }
+
+                plugins.Rows.Add(mf.pluginsForDisplay.Contains(plugin.Name), plugin.Name, plugin.Author, $"{majorVersion}.{minorVersion}");
             }
         }
 

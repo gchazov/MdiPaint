@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace NegativePlugin
 {
+    [Version(1, 0)]
     public class NegativePlugin : IPlugin
     {
         public string Name => "Негатив";

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DatePlugin
 {
+    [Version(1, 0)]
     public class DatePlugin : IPlugin
     {
         public string Name => "Дата и место";
