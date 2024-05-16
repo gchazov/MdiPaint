@@ -107,3 +107,4 @@ D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.csproj.CopyComplete
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.exe
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.pdb
 D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.PlugInfo.resources
+D:\Desktop\MdiPaint\MdiPaint\obj\Debug\MdiPaint.ConfigForm.resources

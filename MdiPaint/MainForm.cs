@@ -31,9 +31,12 @@ namespace MdiPaint
         public static float Zoom { get; set; } = 1.0f;
         public static float ZoomRange { get; set; } = 0.05f;
         public Tools Tools { get; set; }
-        public Dictionary<string, IPlugin> plugins = new Dictionary<string, IPlugin>();
+        public Dictionary<string, IPlugin> allPlugins = new Dictionary<string, IPlugin>();
+        public List<string> pluginsForDisplay = new List<string>();
 
-        void FindPlugins()
+
+
+        public void FindPlugins()
         {
             ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
 
@@ -74,7 +77,7 @@ namespace MdiPaint
                         if (iface != null)
                         {
                             IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
-                            plugins.Add(plugin.Name, plugin);
+                            allPlugins.Add(plugin.Name, plugin);
                         }
                     }
                 }
@@ -84,18 +87,43 @@ namespace MdiPaint
                 }
             }
         }
-        private void CreatePluginsMenu()
+        public void CreatePluginsMenu()
         {
-            foreach (var p in plugins)
+            foreach (var p in allPlugins)
             {
                 var item = filterToolStripMenuItem.DropDownItems.Add(p.Value.Name);
+                pluginsForDisplay.Add(p.Value.Name);
+                item.Click += OnPluginClick;
+            }
+        }
+
+        public void UpdatePluginsMenu()
+        {
+            var itemsToRemove = new List<ToolStripItem>();
+
+            foreach (ToolStripItem dropDownItem in filterToolStripMenuItem.DropDownItems)
+            {
+                if (!(dropDownItem is ToolStripMenuItem menuItem && menuItem.Text.Contains("Информация о плагинах")))
+                {
+                    itemsToRemove.Add(dropDownItem);
+                }
+            }
+
+            foreach (var item in itemsToRemove)
+            {
+                filterToolStripMenuItem.DropDownItems.Remove(item);
+            }
+
+            foreach (var p in pluginsForDisplay)
+            {
+                var item = filterToolStripMenuItem.DropDownItems.Add(p);
                 item.Click += OnPluginClick;
             }
         }
 
         private void OnPluginClick(object sender, EventArgs args)
         {
-            IPlugin plugin = plugins[((ToolStripMenuItem)sender).Text];
+            IPlugin plugin = allPlugins[((ToolStripMenuItem)sender).Text];
             try
             {
                 plugin.Transform((Bitmap)((DocumentForm)ActiveMdiChild).Image);
@@ -370,7 +398,12 @@ namespace MdiPaint
 
         private void PlugInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new PlugInfo(plugins)).ShowDialog();
+            new PlugInfo(this).Show();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

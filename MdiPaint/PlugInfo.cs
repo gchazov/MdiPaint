@@ -1,27 +1,38 @@
-﻿using PluginInterface;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace MdiPaint
 {
     public partial class PlugInfo : Form
     {
-        public PlugInfo(Dictionary<string, IPlugin> plgns)
+        MainForm mf;
+        public PlugInfo(MainForm mf)
         {
             InitializeComponent();
+            this.mf = mf;
+            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+            plugins.Columns.Add(checkColumn);
             plugins.Columns.Add("plugin_name", "Плагин");
             plugins.Columns.Add("plugin_author", "Автор");
-            foreach (var plugin in plgns.Values)
+            plugins.Columns.Add("plugin_ver", "Версия");
+            foreach (var plugin in mf.allPlugins.Values)
             {
-                plugins.Rows.Add(plugin.Name, plugin.Author);
+                
+                plugins.Rows.Add(mf.pluginsForDisplay.Contains(plugin.Name), plugin.Name, plugin.Author, plugin);
             }
+        }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+            mf.pluginsForDisplay.Clear();
+            foreach (DataGridViewRow row in plugins.Rows)
+            {
+                if ((bool)row.Cells[0].Value)
+                {
+                    mf.pluginsForDisplay.Add(row.Cells[1].Value.ToString());
+                }
+            }
+            mf.UpdatePluginsMenu();
         }
     }
 }

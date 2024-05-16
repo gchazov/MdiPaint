@@ -59,6 +59,12 @@
     <Compile Include="CanvasSizeForm.Designer.cs">
       <DependentUpon>CanvasSizeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DocumentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CanvasSizeForm.resx">
       <DependentUpon>CanvasSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DocumentForm.resx">
       <DependentUpon>DocumentForm.cs</DependentUpon>
